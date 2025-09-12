@@ -1,5 +1,7 @@
 package com.example.listycity;
 
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,7 +22,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
 
     private ListView cityList;
-    private Button btnAdd, btnDel;
+    private Button btnAdd, btnDel, btnConf;
     private EditText cityInput;
 
     private ArrayAdapter<String> cityAdapter;
@@ -35,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         cityList = findViewById(R.id.city_list);
-        inputCity = findViewById(R.id.city_input);
+        cityInput = findViewById(R.id.city_input);
         btnAdd = findViewById(R.id.add_button);
         btnDel = findViewById(R.id.delete_button);
+        btnConf = findViewById(R.id.confirm_button);
 
         String []cities = {"Edmonton", "Vancouver"};
 
@@ -51,14 +54,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedCity = position;
+                
             }
         });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                onAddCity();
             }
+
+
         });
 
 
@@ -69,5 +75,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void onAddCity() {
+
+        btnConf.setVisibility(VISIBLE);
+        cityInput.setVisibility(VISIBLE);
+
+        btnConf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String cityName = cityInput.getText().toString().trim();
+                if (cityName.isEmpty()) {
+                    cityInput.setError("Please enter a city name");
+                    return;
+                }
+
+                dataList.add(cityName);
+                cityAdapter.notifyDataSetChanged();
+
+                cityInput.setText("");
+                cityInput.setVisibility(View.INVISIBLE);
+                btnConf.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
 
 }
