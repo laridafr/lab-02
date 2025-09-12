@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedCity = position;
-                
             }
         });
 
@@ -63,16 +63,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 onAddCity();
             }
-
-
         });
 
+//        Testing if lambda operator works
+        btnDel.setOnClickListener(v -> onDelCity());
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void onDelCity() {
+
+        if (selectedCity == -1) {
+            Toast.makeText(this, "Please select a city to delete", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        dataList.remove(selectedCity);
+        cityAdapter.notifyDataSetChanged();
+
+        cityList.clearChoices();
+        selectedCity = -1;
+
+        ;
     }
 
     private void onAddCity() {
