@@ -2,12 +2,13 @@
 
 ## Student Details
 
-- **Full Name:** `<Fredrik Larida>`
-- **CCID:** `<fredrika>`
+- **Full Name:** `Fredrik Larida`
+- **CCID:** `fredrika`
 
 ## References and Resources
 
-`<N/A>`
+https://stackoverflow.com/questions/23586910/selecting-item-from-listview-and-delete-it-onclick-android-to-do-list-applicat
+   - Second method of the top answer
 
 ## Verbal Collaboration
 
