@@ -10,6 +10,7 @@
 https://stackoverflow.com/questions/23586910/selecting-item-from-listview-and-delete-it-onclick-android-to-do-list-applicat
    - Second method of the top answer
 
+https://developer.android.com/guide/topics/ui/notifiers/toasts
 ## Verbal Collaboration
 
 | Student Name | CCID      |
